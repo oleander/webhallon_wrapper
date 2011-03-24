@@ -58,7 +58,7 @@ Deletes the *fifth* track in the given playlist.
 
 Adds [track 1](spotify:track:2Huqz13a9lalQkSPeSk7Sy) and [track 2](spotify:track:2Huqz13a9lalQkSPeSk7Sy) to [list](spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS) starting at index 1.
 
-    $ @ww.add("spotify:track:2Huqz13a9lalQkSPeSk7Sy", "spotify:track:1mq756cRNyVTnykm4mHOgx").to("spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS").starting_at(1)
+    $ @ww.add("spotify:track:2Huqz13a9lalQkSPeSk7Sy", "spotify:track:1mq756cRNyVTnykm4mHOgx").to("spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS").starting_at(0)
 
 ### Is the server alive?
 
