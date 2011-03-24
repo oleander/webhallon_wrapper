@@ -3,6 +3,14 @@ require "spec_helper"
 describe WebhallonWrapper do
   before(:all) do
     @domain = "http://example.com"
+    
+    @options = {
+      name: "myplaylist",
+      link: "spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS",
+      collaborative: true,
+      length: 100,
+      tracks: ["spotify:track:5XbEpHHrEliVNo2Vbf1Nqk"]
+    }
   end
   
   before(:each) do
@@ -18,18 +26,21 @@ describe WebhallonWrapper do
       lambda { WebhallonWrapper.new("google") }.should raise_error
     end
     
-    it "should raise an error" do
-      lambda { WebhallonWrapper.new("http://google.com/") }.should raise_error
+    it "should not raise an error duo to the ending slash" do
+      lambda { WebhallonWrapper.new("http://google.com/") }.should_not raise_error
     end
   end
   
   context "create" do
     before(:each) do
-      stub_request(:post, @domain).with(:body => "name=myplaylist")
+      stub_request(:post, @domain).with(:body => "name=myplaylist").to_return(body: JSON.generate(@options))
     end
     
     it "should be able to create a playlist" do
-      @whw.create("myplaylist")
+      result = @whw.create("myplaylist")
+      @options.each_pair do |method, value|
+        result.send(method).should eq(value)
+      end
     end
     
     after(:each) do
@@ -38,15 +49,7 @@ describe WebhallonWrapper do
   end
   
   context "info" do
-    before(:each) do
-      @options = {
-        name: "myplaylist",
-        link: "spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS",
-        collaborative: true,
-        length: 100,
-        tracks: ["spotify:track:5XbEpHHrEliVNo2Vbf1Nqk"]
-      }
-      
+    before(:each) do      
       stub_request(:get, @domain + "/myplaylist").to_return(body: JSON.generate(@options))
     end
     

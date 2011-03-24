@@ -4,15 +4,17 @@ require "uri"
 
 class WebhallonWrapper
   def initialize(site)
-     raise StandardError.new if not site.to_s.match(URI.regexp) or site.to_s.match(/\/$/)
+     raise StandardError.new if not site.to_s.match(URI.regexp)
      @config = {
-       site: site,
+       site: site.gsub(/(\/)$/, ""),
        timeout: 10
      }
   end
   
+  # Creates the playlist {name} 
   def create(name)
-    RestClient.post(@config[:site], {name: name}, timeout: @config[:timeout])
+    data = RestClient.post(@config[:site], {name: name}, timeout: @config[:timeout])
+    struct(data)
   end
   
   def info(playlist)
@@ -45,7 +47,7 @@ class WebhallonWrapper
   
   def alive?
     !! RestClient.get(@config[:site], timeout: @config[:timeout])
-  rescue
+  rescue StandardError
     false
   end
   
