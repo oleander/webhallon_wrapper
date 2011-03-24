@@ -52,7 +52,7 @@ Deletes the *last* track in the given playlist.
     
 Deletes the *fifth* track in the given playlist.
   
-    $ @ww.delete("spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS").index(5) 
+    $ @ww.delete("spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS").index(4)
     
 ### Add track to playlist
 
