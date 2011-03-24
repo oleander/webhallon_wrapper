@@ -16,9 +16,21 @@ class WebhallonWrapper
   end
   
   def info(playlist)
-    data = RestClient.get(@config[:site] + "/#{playlist}", timeout: @config[:timeout])
-    data = JSON.parse(data)
-    puts data.inspect
-    Struct.new(*data.keys.map(&:to_sym)).new(*data.values)
+    data = RestClient.get("#{@config[:site]}/#{playlist}", timeout: @config[:timeout])
+    struct(data)
   end
+  
+  def delete(playlist)
+    tap { @playlist = playlist }
+  end
+  
+  def index(value)
+    RestClient.delete("#{@config[:site]}/#{@playlist}?index=#{value}", timeout: @config[:timeout])
+  end
+  
+  private
+    def struct(data)
+      data = JSON.parse(data)
+      Struct.new(*data.keys.map(&:to_sym)).new(*data.values)
+    end
 end
