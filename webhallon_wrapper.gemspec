@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Linus Oleander"]
   s.email       = ["linu@oleander.nu"]
-  s.homepage    = "github.com/oleander/webhallon_wrapper"
+  s.homepage    = "http://github.com/oleander/webhallon_wrapper"
   s.summary     = %q{Makes it possible to interact against libspotify through the web}
   s.description = %q{Makes it possible to interact against libspotify through the web using Ruby}
 
