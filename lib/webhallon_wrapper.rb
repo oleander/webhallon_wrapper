@@ -4,7 +4,7 @@ require "uri"
 
 class WebhallonWrapper
   def initialize(site)
-     raise StandardError.new if not site.to_s.match(URI.regexp)
+     raise StandardError.new("Invalid URL") if not site.to_s.match(URI.regexp)
      @config = {
        site: site.gsub(/(\/)$/, ""),
        timeout: 10
