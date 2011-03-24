@@ -21,16 +21,41 @@ class WebhallonWrapper
   end
   
   def delete(playlist)
+    return tap { @playlist = playlist } unless @delete_index
+    inner_delete(@delete_index, playlist)
+  end
+  
+  def index(index)
+    return tap { @delete_index = index } unless @playlist
+    inner_delete(index, @playlist)
+  end
+  
+  def add(*tracks)
+    tap { @tracks = tracks }
+  end
+  
+  def to(playlist)
     tap { @playlist = playlist }
   end
   
-  def index(value)
-    RestClient.delete("#{@config[:site]}/#{@playlist}?index=#{value}", timeout: @config[:timeout])
+  def starting_at(index)
+    raise ArgumentError.new("You have to call #to and #add first") if @tracks.nil? or @playlist.nil?
+    RestClient.post(@config[:site] + "/" + @playlist, {track: @tracks, index: index}, timeout: @config[:timeout])
+  end
+  
+  def alive?
+    !! RestClient.get(@config[:site], timeout: @config[:timeout])
+  rescue
+    false
   end
   
   private
     def struct(data)
       data = JSON.parse(data)
       Struct.new(*data.keys.map(&:to_sym)).new(*data.values)
+    end
+    
+    def inner_delete(index, playlist)
+      RestClient.delete("#{@config[:site]}/#{playlist}?index=#{index}", timeout: @config[:timeout])
     end
 end
