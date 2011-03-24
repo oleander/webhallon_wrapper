@@ -4,6 +4,8 @@ Used **_internally_** at [Radiofy.se](http://radiofy.se).
 
 Makes it possible to interact against [libspotify](http://developer.spotify.com/en/libspotify/overview/) through the web.
 
+## What can we do?
+
 - Create playlists.
 - Get info about a playlist.
 - Delete a track at a given index.
