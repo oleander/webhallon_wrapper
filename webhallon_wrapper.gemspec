@@ -5,11 +5,11 @@ Gem::Specification.new do |s|
   s.name        = "webhallon_wrapper"
   s.version     = "0.0.1"
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.authors     = ["Linus Oleander"]
+  s.email       = ["linu@oleander.nu"]
+  s.homepage    = "github.com/oleander/webhallon_wrapper"
+  s.summary     = %q{Makes it possible to interact against libspotify through the web}
+  s.description = %q{Makes it possible to interact against libspotify through the web using Ruby}
 
   s.rubyforge_project = "webhallon_wrapper"
 
