@@ -23,7 +23,7 @@ It will raise an error if the URL is invalid.
     
 ### Create a playlist
 
-Create a non collaborative playlist
+Create a non collaborative playlist.
 
     $ @ww.create("My Playlist")
 
@@ -67,7 +67,7 @@ Adds [track 1](spotify:track:2Huqz13a9lalQkSPeSk7Sy) and [track 2](spotify:track
 
 ## Data to work with
 
-Accessors for `#create` and `info`.
+Accessors for `#create` and `#info`.
 
 - **name** (String) The name of the playlist.
 - **link** (String) The spotify playlist url.
