@@ -12,8 +12,8 @@ class WebhallonWrapper
   end
   
   # Creates the playlist {name} 
-  def create(name)
-    data = RestClient.post(@config[:site], {name: name}, timeout: @config[:timeout])
+  def create(name, args = {collaborative: false})
+    data = RestClient.post(@config[:site], {name: name, collaborative: args[:collaborative]}, timeout: @config[:timeout])
     struct(data)
   end
   

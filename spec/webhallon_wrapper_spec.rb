@@ -32,19 +32,23 @@ describe WebhallonWrapper do
   end
   
   context "create" do
-    before(:each) do
-      stub_request(:post, @domain).with(:body => "name=myplaylist").to_return(body: JSON.generate(@options))
+    it "should be able to create a playlist using {create!}" do
+      options = @options.merge(collaborative: false)
+      stub_request(:post, @domain).to_return(body: JSON.generate(options))
+      result = @whw.create("myplaylist")
+      options.each_pair do |method, value|
+        result.send(method).should eq(value)
+      end
+      a_request(:post, @domain).with(:body => "name=myplaylist&collaborative=false").should have_been_made.once
     end
     
-    it "should be able to create a playlist" do
-      result = @whw.create("myplaylist")
+    it "should be possible to create a collaborative playlist" do
+      stub_request(:post, @domain).to_return(body: JSON.generate(@options))
+      result = @whw.create("myplaylist", collaborative: true)
       @options.each_pair do |method, value|
         result.send(method).should eq(value)
       end
-    end
-    
-    after(:each) do
-      a_request(:post, @domain).with(:body => "name=myplaylist").should have_been_made.once
+      a_request(:post, @domain).with(:body => "name=myplaylist&collaborative=true").should have_been_made.once
     end
   end
   
