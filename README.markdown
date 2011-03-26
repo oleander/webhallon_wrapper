@@ -22,29 +22,22 @@ It will raise an error if the URL is invalid.
     @ww = WebhallonWrapper.new("http://server:8181")
     
 ### Create a playlist
-    
-    $ result = @ww.create("My Playlist")
-    
-    $ result.name
-    >> "My Playlist"
-    
-    $ result.link
-    >> "spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS"
-    
-    $ result.collaborative
-    >> false
-    
-    $ result.length
-    >> 0
-    
-    $ result.tracks
-    >> []
+
+Create a non collaborative playlist
+
+    $ @ww.create("My Playlist")
+
+Or pass the `collaborative` option.
+
+    $ @ww.create("My Playlist", collaborative: false)
+
+Create a public, collaborative playlist.
+
+    $ @ww.create("My Playlist", collaborative: true)
 
 ### Get info about a playlist
 
-`#info` will have the same attributes as the object returned by `#create`.
-
-    $ result = @ww.info("spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS")
+    $ @ww.info("spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS")
 
 ### Delete a track
 
@@ -71,6 +64,16 @@ Adds [track 1](spotify:track:2Huqz13a9lalQkSPeSk7Sy) and [track 2](spotify:track
     
     $ @ww.alive?
     >> false
+
+## Data to work with
+
+Accessors for `#create` and `info`.
+
+- **name** (String) The name of the playlist.
+- **link** (String) The spotify playlist url.
+- **collaborative** (Boolean) Is the playlist collaborative?
+- **length** (Integer) The amount of tracks in the playlist.
+- **tracks** (Array<String>) A list of spotify tracks.
 
 ## Stuff to keep in mind
 
