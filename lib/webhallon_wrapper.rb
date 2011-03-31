@@ -3,12 +3,12 @@ require "json/pure"
 require "uri"
 
 class WebhallonWrapper
-  def initialize(site)
+  def initialize(site, option = {})
      raise StandardError.new("Invalid URL") if not site.to_s.match(URI.regexp)
      @config = {
        site: site.gsub(/(\/)$/, ""),
        timeout: 10
-     }
+     }.merge(option)
   end
   
   # Creates the playlist {name} 

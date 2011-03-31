@@ -117,4 +117,22 @@ describe WebhallonWrapper do
       a_request(:get, @domain).should have_been_made.once
     end
   end
+  
+  context "option" do
+    it "should be possible to add a timeout" do
+      WebhallonWrapper.new(@domain, timeout: 30).instance_eval do
+        @config[:timeout].should == 30
+      end
+    end
+    
+    it "should use the default option" do
+      WebhallonWrapper.new(@domain).instance_eval do
+        @config[:timeout].should == 10
+      end
+      
+      WebhallonWrapper.new(@domain, {}).instance_eval do
+        @config[:timeout].should == 10
+      end
+    end
+  end
 end
