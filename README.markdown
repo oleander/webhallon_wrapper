@@ -1,6 +1,6 @@
 # Webhallon Wrapper
 
-Used **_internally_** at [Radiofy.se](http://radiofy.se).
+Used **_internally_** at [Radiofy.se](http://radiofy,se).
 
 Makes it possible to interact against [libspotify](http://developer.spotify.com/en/libspotify/overview/) through the web.
 
@@ -37,28 +37,27 @@ Create a public, collaborative playlist.
 
 ### Get info about a playlist
 
-    $ @ww.info("spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS")
+    $ @ww.info("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS")
 
 ### Delete a track
 
 Deletes the *last* track in the given playlist.
 
-    $ @ww.delete("spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS").index(-1)
+    $ @ww.delete("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").index(-1)
     
 Deletes the *fifth* track in the given playlist.
   
-    $ @ww.delete("spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS").index(4)
+    $ @ww.delete("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").index(4)
     
 Deletes everything in the given list.
 
-    $ @ww.delete("spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS").everything
- 
+    $ @ww.delete("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").everything
     
 ### Add track to playlist
 
-Adds [track 1](spotify:track:2Huqz13a9lalQkSPeSk7Sy) and [track 2](spotify:track:2Huqz13a9lalQkSPeSk7Sy) to [list](spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS) starting at index 1.
+Adds [track 1](spotify:track:2Huqz13a9lalQkSPeSk7Sy) and [track 2](spotify:track:2Huqz13a9lalQkSPeSk7Sy) to [list](spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS) starting at index 1.
 
-    $ @ww.add("spotify:track:2Huqz13a9lalQkSPeSk7Sy", "spotify:track:1mq756cRNyVTnykm4mHOgx").to("spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS").starting_at(0)
+    $ @ww.add("spotify:track:2Huqz13a9lalQkSPeSk7Sy", "spotify:track:1mq756cRNyVTnykm4mHOgx").to("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").starting_at(0)
 
 ### Is the server alive?
 
