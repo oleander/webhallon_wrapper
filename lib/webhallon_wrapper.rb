@@ -32,6 +32,10 @@ class WebhallonWrapper
     inner_delete(index, @playlist)
   end
   
+  def everything
+    inner_delete(nil, @playlist)
+  end
+  
   def add(*tracks)
     tap { @tracks = tracks }
   end
@@ -58,6 +62,7 @@ class WebhallonWrapper
     end
     
     def inner_delete(index, playlist)
-      RestClient.delete("#{@config[:site]}/#{playlist}?index=#{index}", timeout: @config[:timeout])
+      prefix = index ? "?index=#{index}" : nil
+      RestClient.delete("#{@config[:site]}/#{playlist}#{prefix}", timeout: @config[:timeout])
     end
 end
