@@ -19,7 +19,7 @@ Makes it possible to interact against [libspotify](http://developer.spotify.com/
 The constructor takes one argument, the *Webhallon* server.  
 It will raise an error if the URL is invalid.
 
-    @ww = WebhallonWrapper.new("http://server:8181")
+    $ @ww = WebhallonWrapper.new("http://server:8181")
     
 ### Create a playlist
 
@@ -48,6 +48,11 @@ Deletes the *last* track in the given playlist.
 Deletes the *fifth* track in the given playlist.
   
     $ @ww.delete("spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS").index(4)
+    
+Deletes everything in the given list.
+
+    $ @ww.delete("spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS").everything
+ 
     
 ### Add track to playlist
 
