@@ -19,55 +19,77 @@ Makes it possible to interact against [libspotify](http://developer.spotify.com/
 The constructor takes one argument, the *Webhallon* server.  
 It will raise an error if the URL is invalid.
 
-    $ @ww = WebhallonWrapper.new("http://server:8181")
-    
+```` ruby
+@ww = WebhallonWrapper.new("http://server:8181")
+````
+
 ### Create a playlist
 
 Create a non collaborative playlist.
 
-    $ @ww.create("My Playlist")
+```` ruby
+@ww.create("My Playlist")
+````
 
 Or pass the `collaborative` option.
 
-    $ @ww.create("My Playlist", collaborative: false)
+```` ruby
+@ww.create("My Playlist", collaborative: false)
+````
 
 Create a public, collaborative playlist.
 
-    $ @ww.create("My Playlist", collaborative: true)
+```` ruby
+@ww.create("My Playlist", collaborative: true)
+````
 
 ### Get info about a playlist
 
-    $ @ww.info("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS")
+```` ruby
+@ww.info("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS")
+````
 
 ### Delete a track
 
 Deletes the *last* track in the given playlist.
 
-    $ @ww.delete("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").index(-1)
-    
+```` ruby
+@ww.delete("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").index(-1)
+````
+
 Deletes the *fifth* track in the given playlist.
-  
-    $ @ww.delete("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").index(4)
-    
+
+```` ruby  
+@ww.delete("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").index(4)
+````
+
 Deletes everything in the given list.
 
-    $ @ww.delete("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").everything
-    
+```` ruby
+@ww.delete("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").everything
+````
+
 ### Add track to playlist
 
 Adds [track 1](spotify:track:2Huqz13a9lalQkSPeSk7Sy) and [track 2](spotify:track:2Huqz13a9lalQkSPeSk7Sy) to [list](spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS) starting at index 1.
 
-    $ @ww.add("spotify:track:2Huqz13a9lalQkSPeSk7Sy", "spotify:track:1mq756cRNyVTnykm4mHOgx").to("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").starting_at(0)
+```` ruby
+@ww.add("spotify:track:2Huqz13a9lalQkSPeSk7Sy", "spotify:track:1mq756cRNyVTnykm4mHOgx").to("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").starting_at(0)
+````
 
 ### Is the server alive?
 
-    $ @ww.alive?
-    >> true
-    
+```` ruby
+@ww.alive?
+# => true
+````
+
 *The server blows up*
-    
-    $ @ww.alive?
-    >> false
+
+```` ruby    
+@ww.alive?
+# => false
+````
 
 ## Data to work with
 
@@ -88,3 +110,7 @@ A request to the *Webhallon* server that takes longer that 10 seconds will cause
 ## How do install
 
 Sorry, you can't.
+
+## License
+
+*Webhallon Wrapper* is released under the *MIT license*.
