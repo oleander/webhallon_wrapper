@@ -36,8 +36,8 @@ class WebhallonWrapper
     inner_delete(nil, @playlist)
   end
   
-  def rename(playlist)
-    tap { @playlist = playlist }
+  def rename(rename)
+    tap { @rename = rename }
   end
   
   def add(*tracks)
@@ -45,8 +45,9 @@ class WebhallonWrapper
   end
   
   def to(var)
-    if @playlist
-      RestClient.post(@config[:site] + "/" + @playlist, {name: var}, timeout: @config[:timeout])
+    if @rename
+      data = RestClient.post(@config[:site] + "/" + @rename, {name: var}, timeout: @config[:timeout])
+      @rename = nil; data
     else
       tap { @playlist = var }
     end
