@@ -36,12 +36,20 @@ class WebhallonWrapper
     inner_delete(nil, @playlist)
   end
   
+  def rename(playlist)
+    tap { @playlist = playlist }
+  end
+  
   def add(*tracks)
     tap { @tracks = tracks }
   end
   
-  def to(playlist)
-    tap { @playlist = playlist }
+  def to(var)
+    if @playlist
+      RestClient.post(@config[:site] + "/" + @playlist, {name: var}, timeout: @config[:timeout])
+    else
+      tap { @playlist = var }
+    end
   end
   
   def starting_at(index)
