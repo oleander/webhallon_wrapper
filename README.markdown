@@ -49,6 +49,12 @@ Create a public, collaborative playlist.
 @ww.info("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS")
 ````
 
+### Rename playlist
+
+```` ruby
+@ww.rename("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").to("Any name")
+````
+
 ### Delete a track
 
 Deletes the *last* track in the given playlist.
