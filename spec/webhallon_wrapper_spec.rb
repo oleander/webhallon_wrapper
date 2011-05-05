@@ -5,11 +5,11 @@ describe WebhallonWrapper do
     @domain = "http://example.com"
     
     @options = {
-      name: "myplaylist",
-      link: "spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS",
-      collaborative: true,
-      length: 100,
-      tracks: ["spotify:track:5XbEpHHrEliVNo2Vbf1Nqk"]
+      :name          => "myplaylist",
+      :link          => "spotify:user:radiofy.se:playlist:47JbGTR8wxJw0SX0G1CJcS",
+      :collaborative => true,
+      :length        => 100,
+      :tracks        => ["spotify:track:5XbEpHHrEliVNo2Vbf1Nqk"]
     }
   end
   
@@ -33,28 +33,30 @@ describe WebhallonWrapper do
   
   context "create" do
     it "should be able to create a playlist using {create!}" do
-      options = @options.merge(collaborative: false)
-      stub_request(:post, @domain).to_return(body: JSON.generate(options))
+      options = @options.merge(:collaborative => false)
+      stub_request(:post, @domain).to_return(:body => JSON.generate(options))
       result = @ww.create("myplaylist")
       options.each_pair do |method, value|
         result.send(method).should eq(value)
       end
-      a_request(:post, @domain).with(:body => "name=myplaylist&collaborative=false").should have_been_made.once
+      body = RUBY_VERSION =~ /1\.8\.7/ ? "collaborative=false&name=myplaylist" : "name=myplaylist&collaborative=false"
+      a_request(:post, @domain).with(:body => body).should have_been_made.once
     end
     
     it "should be possible to create a collaborative playlist" do
-      stub_request(:post, @domain).to_return(body: JSON.generate(@options))
-      result = @ww.create("myplaylist", collaborative: true)
+      stub_request(:post, @domain).to_return(:body =>  JSON.generate(@options))
+      result = @ww.create("myplaylist", :collaborative => true)
       @options.each_pair do |method, value|
         result.send(method).should eq(value)
       end
-      a_request(:post, @domain).with(:body => "name=myplaylist&collaborative=true").should have_been_made.once
+      body = RUBY_VERSION =~ /1\.8\.7/ ? "collaborative=true&name=myplaylist" : "name=myplaylist&collaborative=true"
+      a_request(:post, @domain).with(:body => body).should have_been_made.once
     end
   end
   
   context "info" do
     before(:each) do      
-      stub_request(:get, @domain + "/myplaylist").to_return(body: JSON.generate(@options))
+      stub_request(:get, @domain + "/myplaylist").to_return(:body =>  JSON.generate(@options))
     end
     
     it "should return info about the playlist {myplaylist}" do
@@ -91,12 +93,12 @@ describe WebhallonWrapper do
   
   context "add" do
     before(:each) do      
-      stub_request(:post, @domain + '/myplaylist').with(body: "track[]=a&track[]=b&track[]=c&index=1")
+      stub_request(:post, @domain + '/myplaylist').with(:body =>  "track[]=a&track[]=b&track[]=c&index=1")
     end
     
     it "should be possible to add tracks to a list" do
       @ww.add("a", "b", "c").to("myplaylist").starting_at(1)
-      a_request(:post, @domain + '/myplaylist').with(body: "track[]=a&track[]=b&track[]=c&index=1").should have_been_made.once
+      a_request(:post, @domain + '/myplaylist').with(:body =>  "track[]=a&track[]=b&track[]=c&index=1").should have_been_made.once
     end
     
     it "should raise an error if calling #starting_at without #add and #to" do
@@ -106,12 +108,12 @@ describe WebhallonWrapper do
   
   context "rename" do
     before(:each) do      
-      stub_request(:post, @domain + '/myplaylist').with(body: "name=Any%20Name")
+      stub_request(:post, @domain + '/myplaylist').with(:body =>  "name=Any%20Name")
     end
     
     it "should be possible to add tracks to a list" do
       @ww.rename("myplaylist").to("Any Name")
-      a_request(:post, @domain + '/myplaylist').with(body: "name=Any%20Name").should have_been_made.once
+      a_request(:post, @domain + '/myplaylist').with(:body =>  "name=Any%20Name").should have_been_made.once
     end
   end
   
@@ -133,7 +135,7 @@ describe WebhallonWrapper do
   
   context "option" do
     it "should be possible to add a timeout" do
-      WebhallonWrapper.new(@domain, timeout: 30).instance_eval do
+      WebhallonWrapper.new(@domain, :timeout => 30).instance_eval do
         @config[:timeout].should == 30
       end
     end

@@ -117,6 +117,10 @@ A request to the *Webhallon* server that takes longer that 10 seconds will cause
 
 Sorry, you can't.
 
+## Requirements
+
+*Webhallon Wrapper* is tested in *OS X 10.6.7* using Ruby *1.8.7*, *1.9.2*.
+
 ## License
 
 *Webhallon Wrapper* is released under the *MIT license*.

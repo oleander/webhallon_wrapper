@@ -6,19 +6,19 @@ class WebhallonWrapper
   def initialize(site, option = {})
      raise StandardError.new("Invalid URL") if not site.to_s.match(URI.regexp)
      @config = {
-       site: site.gsub(/(\/)$/, ""),
-       timeout: 10
+       :site    => site.gsub(/(\/)$/, ""),
+       :timeout => 10
      }.merge(option)
   end
   
   # Creates the playlist {name} 
-  def create(name, args = {collaborative: false})
-    data = RestClient.post(@config[:site], {name: name, collaborative: args[:collaborative]}, timeout: @config[:timeout])
+  def create(name, args = {:collaborative => false})
+    data = RestClient.post(@config[:site], {:name => name, :collaborative => args[:collaborative]}, :timeout => @config[:timeout])
     struct(data)
   end
   
   def info(playlist)
-    data = RestClient.get("#{@config[:site]}/#{playlist}", timeout: @config[:timeout])
+    data = RestClient.get("#{@config[:site]}/#{playlist}", :timeout => @config[:timeout])
     struct(data)
   end
   
@@ -46,7 +46,7 @@ class WebhallonWrapper
   
   def to(var)
     if @rename
-      data = RestClient.post(@config[:site] + "/" + @rename, {name: var}, timeout: @config[:timeout])
+      data = RestClient.post(@config[:site] + "/" + @rename, {:name => var}, :timeout => @config[:timeout])
       @rename = nil; data
     else
       tap { @playlist = var }
@@ -55,11 +55,11 @@ class WebhallonWrapper
   
   def starting_at(index)
     raise ArgumentError.new("You have to call #to and #add first") if @tracks.nil? or @playlist.nil?
-    RestClient.post(@config[:site] + "/" + @playlist, {track: @tracks, index: index}, timeout: @config[:timeout])
+    RestClient.post(@config[:site] + "/" + @playlist, {:track => @tracks, :index => index}, :timeout => @config[:timeout])
   end
   
   def alive?
-    !! RestClient.get(@config[:site], timeout: @config[:timeout])
+    !! RestClient.get(@config[:site], :timeout => @config[:timeout])
   rescue StandardError
     false
   end
@@ -72,6 +72,6 @@ class WebhallonWrapper
     
     def inner_delete(index, playlist)
       prefix = index ? "?index=#{index}" : nil
-      RestClient.delete("#{@config[:site]}/#{playlist}#{prefix}", timeout: @config[:timeout])
+      RestClient.delete("#{@config[:site]}/#{playlist}#{prefix}", :timeout => @config[:timeout])
     end
 end
