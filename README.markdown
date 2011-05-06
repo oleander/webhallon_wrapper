@@ -113,10 +113,6 @@ Accessors for `#create` and `#info`.
 `Webhallon Wrapper` does not catch any errors, you have to do it by your self.
 
 A request to the *Webhallon* server that takes longer that 10 seconds will cause a timeout error.
-    
-## How do install
-
-Sorry, you can't.
 
 ## Requirements
 
