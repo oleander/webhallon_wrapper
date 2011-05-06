@@ -9,7 +9,8 @@ Makes it possible to interact against [libspotify](http://developer.spotify.com/
 - Create playlists.
 - Get info about a playlist.
 - Delete a track at a given index.
-- Add track to playlist.
+- Add tracks to playlist.
+- Rename playlist.
 - Check if the server is alive.
 
 ## How to use
