@@ -17,12 +17,12 @@ class WebhallonWrapper
       :name => name
     }
     options.merge!(:collaborative => args[:collaborative]) unless args[:collaborative].nil?
-    data = RestClient.post(@config[:site], options, :timeout => @config[:timeout])
+    data = get(:post, @config[:site], options)
     struct(data)
   end
   
   def info(playlist)
-    data = RestClient.get("#{@config[:site]}/#{playlist}", :timeout => @config[:timeout])
+    data = get(:get, "#{@config[:site]}/#{playlist}")
     struct(data)
   end
   
@@ -50,7 +50,7 @@ class WebhallonWrapper
   
   def to(var)
     if @rename
-      data = RestClient.post(@config[:site] + "/" + @rename, {:name => var}, :timeout => @config[:timeout])
+      data = get(:post, @config[:site] + "/" + @rename, {:name => var})
       @rename = nil; data
     else
       tap { @playlist = var }
@@ -59,12 +59,12 @@ class WebhallonWrapper
   
   def starting_at(index)
     raise ArgumentError.new("You have to call #to and #add first") if @tracks.nil? or @playlist.nil?
-    RestClient.post(@config[:site] + "/" + @playlist, {:track => @tracks, :index => index}, :timeout => @config[:timeout])
+    get(:post, @config[:site] + "/" + @playlist, {:track => @tracks, :index => index})
   end
   
   def alive?
-    !! RestClient.get(@config[:site], :timeout => @config[:timeout])
-  rescue StandardError
+    !! get(:get, @config[:site])
+  rescue RestClient::Exception
     false
   end
   
@@ -76,6 +76,10 @@ class WebhallonWrapper
     
     def inner_delete(index, playlist)
       prefix = index ? "?index=#{index}" : nil
-      RestClient.delete("#{@config[:site]}/#{playlist}#{prefix}", :timeout => @config[:timeout])
+      get(:delete, "#{@config[:site]}/#{playlist}#{prefix}")
+    end
+    
+    def get(*args)
+      RestClient.send(args.first, *args[1..-1], :timeout => @config[:timeout])
     end
 end
