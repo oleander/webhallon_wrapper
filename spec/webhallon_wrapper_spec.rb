@@ -159,4 +159,24 @@ describe WebhallonWrapper do
       end
     end
   end
+  
+  context "retry" do
+    before(:each) do
+      @other = WebhallonWrapper.new(@domain, :retries => 10, :delay => 0.0)
+    end
+    
+    it "should be able to retry 10 times" do
+      2.times do
+        stub_request(:get, @domain + "/myplaylist").to_timeout
+        lambda { @other.info("myplaylist") }.should raise_error(RestClient::RequestTimeout)
+      end
+      a_request(:get, @domain + "/myplaylist").should have_been_made.times(20)
+    end
+    
+    it "should only retry on timeout " do
+      stub_request(:get, @domain + "/myplaylist").to_return(:status => 404)
+      lambda { @other.info("myplaylist") }.should raise_error(RestClient::Exception, "404 Resource Not Found")
+      a_request(:get, @domain + "/myplaylist").should have_been_made.once
+    end
+  end
 end

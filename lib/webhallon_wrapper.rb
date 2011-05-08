@@ -7,7 +7,10 @@ class WebhallonWrapper
      raise StandardError.new("Invalid URL") if not site.to_s.match(URI.regexp)
      @config = {
        :site    => site.gsub(/(\/)$/, ""),
-       :timeout => 10
+       :timeout => 10,
+       :retries => 10,
+       :delay   => 10,
+       :current => 0
      }.merge(option)
   end
   
@@ -80,6 +83,17 @@ class WebhallonWrapper
     end
     
     def get(*args)
-      RestClient.send(args.first, *args[1..-1], :timeout => @config[:timeout])
+      # http_code
+      begin
+        RestClient.send(args.first, *args[1..-1], :timeout => @config[:timeout])
+      rescue RestClient::RequestTimeout => error
+        sleep(@config[:delay])
+        if ((@config[:current] += 1) < @config[:retries])
+          retry
+        else
+          @config[:current] = 0
+          raise error
+        end
+      end
     end
 end

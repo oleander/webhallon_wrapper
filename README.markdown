@@ -17,12 +17,26 @@ Makes it possible to interact against [libspotify](http://developer.spotify.com/
 
 ### Initialize
 
-The constructor takes one argument, the *Webhallon* server.  
+The constructor takes two argument, the *Webhallon* server and an option param.  
 It will raise an error if the URL is invalid.
+The `options` param is optimal.
 
 ```` ruby
-@ww = WebhallonWrapper.new("http://server:8181")
+@ww = WebhallonWrapper.new("http://server:8181", options)
 ````
+#### Option param
+
+```` ruby
+options = {
+  timeout: 10,
+  retries: 10,
+  delay: 10
+}
+````
+
+- **timeout** (*Fixnum*) Maximum time for each request. *Default* is 10.
+- **retries** (*Fixnum*) Maximum retries if an timeout occur. *Default* is 10.
+- **delay** (*Fixnum*) Time to sleep between each retry. *Default* is 10.
 
 ### Create a playlist
 
