@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Linus Oleander"]
   s.email       = ["linu@oleander.nu"]
   s.homepage    = "http://github.com/oleander/webhallon_wrapper"
-  s.summary     = %q{Makes it possible to interact against libspotify through the web}
-  s.description = %q{Makes it possible to interact against libspotify through the web using Ruby}
+  s.summary     = %q{The bridge between Webhallon and Ruby}
+  s.description = %q{The bridge between Webhallon and Ruby.}
 
   s.rubyforge_project = "webhallon_wrapper"
 
