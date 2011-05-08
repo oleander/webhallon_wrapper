@@ -35,7 +35,7 @@ describe WebhallonWrapper do
     it "should be able to create a playlist using {create!}" do
       options = @options.merge(:collaborative => false)
       stub_request(:post, @domain).to_return(:body => JSON.generate(options))
-      result = @ww.create("myplaylist")
+      result = @ww.create("myplaylist", options)
       options.each_pair do |method, value|
         result.send(method).should eq(value)
       end
@@ -51,6 +51,15 @@ describe WebhallonWrapper do
       end
       body = RUBY_VERSION =~ /1\.8\.7/ ? "collaborative=true&name=myplaylist" : "name=myplaylist&collaborative=true"
       a_request(:post, @domain).with(:body => body).should have_been_made.once
+    end
+    
+    it "should be possible to create a playlist, without the collaborative option" do
+      stub_request(:post, @domain).to_return(:body =>  JSON.generate(@options))
+      result = @ww.create("myplaylist")
+      @options.each_pair do |method, value|
+        result.send(method).should eq(value)
+      end
+      a_request(:post, @domain).with(:body => "name=myplaylist").should have_been_made.once
     end
   end
   
