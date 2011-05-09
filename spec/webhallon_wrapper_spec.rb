@@ -126,21 +126,21 @@ describe WebhallonWrapper do
     end
   end
   
-  context "alive?" do
-    it "should be alive" do
-      stub_request(:get, @domain).to_return(:status => 200)
-      @ww.should be_alive
-    end
-    
-    it "should not be alive" do
-      stub_request(:get, @domain).to_return(:status => 400)
-      @ww.should_not be_alive
-    end
-    
-    after(:each) do
-      a_request(:get, @domain).should have_been_made.once
-    end
-  end
+  # context "alive?" do
+  #   it "should be alive" do
+  #     stub_request(:get, @domain).to_return(:status => 200)
+  #     @ww.should be_alive
+  #   end
+  #   
+  #   it "should not be alive" do
+  #     stub_request(:get, @domain).to_return(:status => 400)
+  #     @ww.should_not be_alive
+  #   end
+  #   
+  #   after(:each) do
+  #     a_request(:get, @domain).should have_been_made.once
+  #   end
+  # end
   
   context "option" do
     it "should be possible to add a timeout" do

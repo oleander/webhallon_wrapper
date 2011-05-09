@@ -65,11 +65,11 @@ class WebhallonWrapper
     get(:post, @config[:site] + "/" + @playlist, {:track => @tracks, :index => index})
   end
   
-  def alive?
-    !! get(:get, @config[:site])
-  rescue RestClient::Exception
-    false
-  end
+  # def alive?
+  #   !! get(:get, @config[:site])
+  # rescue RestClient::Exception
+  #   false
+  # end
   
   private
     def struct(data)
@@ -83,17 +83,21 @@ class WebhallonWrapper
     end
     
     def get(*args)
-      # http_code
       begin
         RestClient.send(args.first, *args[1..-1], :timeout => @config[:timeout])
-      rescue RestClient::RequestTimeout => error
-        sleep(@config[:delay])
-        if ((@config[:current] += 1) < @config[:retries])
-          retry
+      rescue RestClient::Exception => error
+        if not error.to_s =~ /404/
+          sleep(@config[:delay])
+          if ((@config[:current] += 1) < @config[:retries])
+            retry
+          else
+            raise error
+          end
         else
-          @config[:current] = 0
           raise error
         end
+      ensure
+        @config[:current] = 0
       end
     end
 end
