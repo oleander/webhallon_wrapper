@@ -173,10 +173,18 @@ describe WebhallonWrapper do
       a_request(:get, @domain + "/myplaylist").should have_been_made.times(20)
     end
     
-    it "should only retry on timeout " do
+    it "should not retry on 404" do
       stub_request(:get, @domain + "/myplaylist").to_return(:status => 404)
       lambda { @other.info("myplaylist") }.should raise_error(RestClient::Exception, "404 Resource Not Found")
       a_request(:get, @domain + "/myplaylist").should have_been_made.once
+    end
+    
+    it "should retry when an Errno::ECONNREFUSED error is raised" do
+      stub_request(:get, @domain + "/myplaylist").to_return do
+        raise Errno::ECONNREFUSED
+      end
+      lambda { @other.info("myplaylist") }.should raise_error(Errno::ECONNREFUSED)
+      a_request(:get, @domain + "/myplaylist").should have_been_made.times(10)
     end
   end
 end
