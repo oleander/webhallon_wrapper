@@ -98,6 +98,12 @@ describe WebhallonWrapper do
       @ww.delete("myplaylist").everything
       a_request(:post, %r{/myplaylist/delete/tracks}).should have_been_made.once
     end
+
+    it "should be able to delete a range" do
+      stub_request(:post, %r{/myplaylist/delete/tracks})
+      @ww.index(10..20).delete("myplaylist")
+      a_request(:post, %r{/myplaylist/delete/tracks}).should have_been_made.once
+    end
   end
   
   context "add" do
