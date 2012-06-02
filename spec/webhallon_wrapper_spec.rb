@@ -82,21 +82,21 @@ describe WebhallonWrapper do
   
   context "delete" do    
     it "should be able to delete an index" do
-      stub_request(:delete, @domain + "/myplaylist?index=-123")
+      stub_request(:post, %r{/myplaylist/delete/tracks})
       @ww.delete("myplaylist").index(-123)
-      a_request(:delete, @domain + "/myplaylist?index=-123").should have_been_made.once
+      a_request(:post, %r{/myplaylist/delete/tracks}).should have_been_made.once
     end
     
     it "should be able to delete an index - reverse" do
-      stub_request(:delete, @domain + "/myplaylist?index=-123")
+      stub_request(:post, %r{/myplaylist/delete/tracks})
       @ww.index(-123).delete("myplaylist")
-      a_request(:delete, @domain + "/myplaylist?index=-123").should have_been_made.once
+      a_request(:post, %r{/myplaylist/delete/tracks}).should have_been_made.once
     end
     
     it "should be able to delete everything" do
-      stub_request(:delete, @domain + "/myplaylist")
+      stub_request(:post, %r{/myplaylist/delete/tracks})
       @ww.delete("myplaylist").everything
-      a_request(:delete, @domain + "/myplaylist").should have_been_made.once
+      a_request(:post, %r{/myplaylist/delete/tracks}).should have_been_made.once
     end
   end
   

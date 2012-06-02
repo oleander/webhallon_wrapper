@@ -35,7 +35,15 @@ class WebhallonWrapper
   end
   
   def index(index)
-    return tap { @delete_index = index } unless @playlist
+    unless @playlist
+      return tap {
+        if index.is_a?(Range)
+          @delete_index = index.to_a
+        else
+          @delete_index = [index]
+        end
+      }
+    end
     inner_delete(index, @playlist)
   end
   
@@ -78,14 +86,16 @@ class WebhallonWrapper
     end
     
     def inner_delete(index, playlist)
-      prefix = index ? "?index=#{index}" : nil
-      get(:delete, "#{@config[:site]}/#{playlist}#{prefix}")
+      params = []
+      params << "#{@config[:site]}/#{playlist}/delete/tracks"
+      params << { index: @delete_index }
+      get(:post, *params)
     end
     
     def get(*args)
       begin
-        RestClient.send(args.first, *args[1..-1], :timeout => @config[:timeout])
-      rescue => error
+        RestClient.send(args[0], *args[1..-1])
+      rescue RestClient::Exception, Errno::ECONNREFUSED => error
         if not error.to_s =~ /404/
           sleep(@config[:delay])
           if ((@config[:current] += 1) < @config[:retries])
