@@ -35,16 +35,26 @@ class WebhallonWrapper
   end
   
   def index(index)
-    unless @playlist
-      return tap {
-        if index.is_a?(Range)
-          @delete_index = index.to_a
-        else
-          @delete_index = [index]
-        end
-      }
+    if @keep
+      if index.is_a?(Range)
+        @keep_index = index.to_a
+      else
+        @keep_index = [index]
+      end
+
+      return inner_keep(index, @keep)
+    else
+      unless @playlist
+        return tap {
+          if index.is_a?(Range)
+            @delete_index = index.to_a
+          else
+            @delete_index = [index]
+          end
+        }
+      end
+      inner_delete(index, @playlist)
     end
-    inner_delete(index, @playlist)
   end
   
   def everything
@@ -53,6 +63,10 @@ class WebhallonWrapper
   
   def rename(rename)
     tap { @rename = rename }
+  end
+
+  def keep(playlist)
+    tap { @keep =  playlist }
   end
   
   def add(*tracks)
@@ -84,7 +98,14 @@ class WebhallonWrapper
       data = JSON.parse(data)
       Struct.new(*data.keys.map(&:to_sym)).new(*data.values)
     end
-    
+  
+    def inner_keep(index, playlist)
+      params = []
+      params << "#{@config[:site]}/#{playlist}/keep/tracks"
+      params << { index: @keep_index }
+      get(:post, *params)
+    end    
+
     def inner_delete(index, playlist)
       params = []
       params << "#{@config[:site]}/#{playlist}/delete/tracks"

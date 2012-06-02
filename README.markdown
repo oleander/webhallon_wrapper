@@ -90,6 +90,18 @@ Deletes everything in the given list.
 @ww.delete("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").everything
 ````
 
+Deletes a range
+
+```` ruby
+@ww.delete("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").index(30..40)
+````
+
+#### Keep
+
+```` ruby
+@ww.keep("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS").index(0..399)
+````
+
 ### Add track to playlist
 
 Adds [track 1](spotify:track:2Huqz13a9lalQkSPeSk7Sy) and [track 2](spotify:track:2Huqz13a9lalQkSPeSk7Sy) to [list](spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS) starting at index 1.

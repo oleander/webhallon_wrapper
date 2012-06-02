@@ -104,6 +104,20 @@ describe WebhallonWrapper do
       @ww.index(10..20).delete("myplaylist")
       a_request(:post, %r{/myplaylist/delete/tracks}).should have_been_made.once
     end
+
+    it "should be able to delete a range" do
+      stub_request(:post, %r{/myplaylist/delete/tracks})
+      @ww.index(10..20).delete("myplaylist")
+      a_request(:post, %r{/myplaylist/delete/tracks}).should have_been_made.once
+    end
+  end
+
+  context "keep" do
+    it "should keep a range" do
+      stub_request(:post, %r{/myplaylist/keep/tracks})
+      @ww.keep("myplaylist").index(0..399)
+      a_request(:post, %r{/myplaylist/keep/tracks}).should have_been_made.once
+    end
   end
   
   context "add" do
