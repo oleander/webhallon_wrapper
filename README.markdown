@@ -17,7 +17,7 @@ socket = Webhallon::Client.new("http://server:8181")
 Create a non collaborative playlist.
 
 ```` ruby
-socket.playlist.create({
+socket.playlists.create({
   name: "My playlist",
   collaborative: false
 })
@@ -26,13 +26,13 @@ socket.playlist.create({
 #### Information
 
 ```` ruby
-socket.playlist.information("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS")
+socket.playlists.information("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS")
 ````
 
 #### Update
 
 ```` ruby
-socket.playlist.update({
+socket.playlists.update({
   playlist: "spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS",
   name: "New name",
   collaborative: false
