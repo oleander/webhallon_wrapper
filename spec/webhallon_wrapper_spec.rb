@@ -10,6 +10,7 @@ end
 describe Webhallon::Client do
   let(:socket) { Webhallon::Client.new("http://localhost:9292") }
   let(:playlist) { "spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC" }
+  let(:track) { "spotify:track:0FRelX0g1nNDFt6nvtiakE" }
 
   use_vcr_cassette "client"
 
@@ -65,6 +66,19 @@ describe Webhallon::Client do
       name1.should_not eq(name2)
 
       validate(p)
+    end
+  end
+
+  describe "add tracks" do
+    it "should be possible to add a track" do
+      playlist1 = socket.playlists.information(playlist)
+      playlist2 = socket.tracks.add({
+        playlist: playlist,
+        tracks: [track]
+      })
+
+      playlist1.length.should eq(playlist2.length - 1)
+      validate(playlist2)
     end
   end
 end

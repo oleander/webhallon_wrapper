@@ -1,6 +1,54 @@
 ---
 http_interactions:
 - request:
+    method: post
+    uri: http://localhost:9292/spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC
+    body:
+      encoding: ASCII-8BIT
+      string: tracks[]=spotify%3Atrack%3A0FRelX0g1nNDFt6nvtiakE&index=0
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '57'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: ! 'Not Found '
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Cascade:
+      - pass
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '492'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
+      Date:
+      - Tue, 05 Jun 2012 00:23:42 GMT
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: US-ASCII
+      string: ! "<!DOCTYPE html>\n<html>\n<head>\n  <style type=\"text/css\">\n  body
+        { text-align:center;font-family:helvetica,arial;font-size:22px;\n    color:#888;margin:20px}\n
+        \ #c {margin:0 auto;width:500px;text-align:left}\n  </style>\n</head>\n<body>\n
+        \ <h2>Sinatra doesn&rsquo;t know this ditty.</h2>\n  <img src='http://localhost:9292/__sinatra__/404.png'>\n
+        \ <div id=\"c\">\n    Try this:\n    <pre>post '/spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC'
+        do\n  \"Hello World\"\nend</pre>\n  </div>\n</body>\n</html>\n"
+    http_version: !!null 
+  recorded_at: Tue, 05 Jun 2012 00:23:42 GMT
+- request:
     method: get
     uri: http://localhost:9292/connected
     body:
@@ -33,14 +81,14 @@ http_interactions:
       Server:
       - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
       Date:
-      - Tue, 05 Jun 2012 00:14:38 GMT
+      - Tue, 05 Jun 2012 00:25:40 GMT
       Connection:
       - Keep-Alive
     body:
       encoding: US-ASCII
       string: ! '{"connected":true}'
     http_version: !!null 
-  recorded_at: Tue, 05 Jun 2012 00:14:38 GMT
+  recorded_at: Tue, 05 Jun 2012 00:25:40 GMT
 - request:
     method: post
     uri: http://localhost:9292/
@@ -74,14 +122,14 @@ http_interactions:
       Server:
       - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
       Date:
-      - Tue, 05 Jun 2012 00:14:40 GMT
+      - Tue, 05 Jun 2012 00:25:43 GMT
       Connection:
       - Keep-Alive
     body:
       encoding: US-ASCII
-      string: ! '{"name":"This is a name","link":"spotify:user:radiofy.se:playlist:6cJJjSDQijnfMloutp6t5V","length":0,"tracks":[],"collaborative":true}'
+      string: ! '{"name":"This is a name","link":"spotify:user:radiofy.se:playlist:3PHDF3VUrWqz6NGqCaqhtl","length":0,"tracks":[],"collaborative":true}'
     http_version: !!null 
-  recorded_at: Tue, 05 Jun 2012 00:14:40 GMT
+  recorded_at: Tue, 05 Jun 2012 00:25:43 GMT
 - request:
     method: post
     uri: http://localhost:9292/
@@ -115,14 +163,55 @@ http_interactions:
       Server:
       - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
       Date:
-      - Tue, 05 Jun 2012 00:14:42 GMT
+      - Tue, 05 Jun 2012 00:25:43 GMT
       Connection:
       - Keep-Alive
     body:
       encoding: US-ASCII
-      string: ! '{"name":"This is a name","link":"spotify:user:radiofy.se:playlist:2JeHX0hyXzN6ehnMjZ0d3K","length":0,"tracks":[],"collaborative":false}'
+      string: ! '{"name":"This is a name","link":"spotify:user:radiofy.se:playlist:0akkl1Wec0qcR78ITXuKjf","length":0,"tracks":[],"collaborative":false}'
     http_version: !!null 
-  recorded_at: Tue, 05 Jun 2012 00:14:42 GMT
+  recorded_at: Tue, 05 Jun 2012 00:25:43 GMT
+- request:
+    method: put
+    uri: http://localhost:9292/spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC
+    body:
+      encoding: ASCII-8BIT
+      string: name=0723ae17be65ea04a9edf1bc217f0363
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '37'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ! 'OK '
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '230'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
+      Date:
+      - Tue, 05 Jun 2012 00:25:44 GMT
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: US-ASCII
+      string: ! '{"name":"0723ae17be65ea04a9edf1bc217f0363","link":"spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC","length":2,"tracks":["spotify:track:0FRelX0g1nNDFt6nvtiakE","spotify:track:0FRelX0g1nNDFt6nvtiakE"],"collaborative":false}'
+    http_version: !!null 
+  recorded_at: Tue, 05 Jun 2012 00:25:44 GMT
 - request:
     method: get
     uri: http://localhost:9292/spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC
@@ -152,31 +241,31 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '153'
+      - '230'
       Server:
       - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
       Date:
-      - Tue, 05 Jun 2012 00:14:42 GMT
+      - Tue, 05 Jun 2012 00:25:44 GMT
       Connection:
       - Keep-Alive
     body:
       encoding: US-ASCII
-      string: ! '{"name":"619a26ffb707fff99c42cc93bd99f70d","link":"spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC","length":0,"tracks":[],"collaborative":false}'
+      string: ! '{"name":"0723ae17be65ea04a9edf1bc217f0363","link":"spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC","length":2,"tracks":["spotify:track:0FRelX0g1nNDFt6nvtiakE","spotify:track:0FRelX0g1nNDFt6nvtiakE"],"collaborative":false}'
     http_version: !!null 
-  recorded_at: Tue, 05 Jun 2012 00:14:42 GMT
+  recorded_at: Tue, 05 Jun 2012 00:25:44 GMT
 - request:
-    method: put
-    uri: http://localhost:9292/spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC
+    method: post
+    uri: http://localhost:9292/spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC/tracks
     body:
       encoding: ASCII-8BIT
-      string: name=639ecee5f40327e64638e08b015a374b
+      string: tracks[]=spotify%3Atrack%3A0FRelX0g1nNDFt6nvtiakE&index=0
     headers:
       Accept:
       - ! '*/*; q=0.5, application/xml'
       Accept-Encoding:
       - gzip, deflate
       Content-Length:
-      - '37'
+      - '57'
       Content-Type:
       - application/x-www-form-urlencoded
       User-Agent:
@@ -193,16 +282,16 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '153'
+      - '269'
       Server:
       - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
       Date:
-      - Tue, 05 Jun 2012 00:14:42 GMT
+      - Tue, 05 Jun 2012 00:25:44 GMT
       Connection:
       - Keep-Alive
     body:
       encoding: US-ASCII
-      string: ! '{"name":"639ecee5f40327e64638e08b015a374b","link":"spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC","length":0,"tracks":[],"collaborative":false}'
+      string: ! '{"name":"0723ae17be65ea04a9edf1bc217f0363","link":"spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC","length":3,"tracks":["spotify:track:0FRelX0g1nNDFt6nvtiakE","spotify:track:0FRelX0g1nNDFt6nvtiakE","spotify:track:0FRelX0g1nNDFt6nvtiakE"],"collaborative":false}'
     http_version: !!null 
-  recorded_at: Tue, 05 Jun 2012 00:14:42 GMT
+  recorded_at: Tue, 05 Jun 2012 00:25:44 GMT
 recorded_with: VCR 2.2.0

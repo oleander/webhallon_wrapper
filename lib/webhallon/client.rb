@@ -10,5 +10,9 @@ module Webhallon
     def playlists
       @_playlists ||= Webhallon::Playlists.new(server)
     end
+
+    def tracks
+      @_tracks ||= Webhallon::Tracks.new(server)
+    end
   end
 end
