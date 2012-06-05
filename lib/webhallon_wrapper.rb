@@ -1,5 +1,3 @@
-require "rest-client"
-require "json"
 require "webhallon/base"
 require "webhallon/playlists"
 require "webhallon/playlist"

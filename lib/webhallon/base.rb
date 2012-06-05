@@ -1,3 +1,6 @@
+require "rest-client"
+require "json"
+
 module Webhallon
   class Base < Struct.new(:server)
     #
