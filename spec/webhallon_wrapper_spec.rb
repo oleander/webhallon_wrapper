@@ -1,8 +1,8 @@
 def validate(playlist)
-  playlist.name.should eq("This is a name")
+  playlist.name.should_not be_empty
   playlist.should have(0).tracks
   playlist.length.should be_zero
-  playlist.should_not be_collaborative
+  [true, false].should include(playlist.collaborative?)
   playlist.link.should match(/spotify:user:[\.\w]+:playlist:\w+/)
   playlist.should be_instance_of(Webhallon::Playlist)
 end
@@ -56,12 +56,15 @@ describe Webhallon::Client do
   describe "update playlist" do
     it "should be able to update playlist" do
       name1 = socket.playlists.information(playlist).name
-      name2 = socket.playlists.update({
+      p = socket.playlists.update({
         name: r_name,
         playlist: playlist
-      }).name
+      })
 
+      name2 = p.name
       name1.should_not eq(name2)
+
+      validate(p)
     end
   end
 end

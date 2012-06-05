@@ -33,14 +33,14 @@ http_interactions:
       Server:
       - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
       Date:
-      - Tue, 05 Jun 2012 00:11:39 GMT
+      - Tue, 05 Jun 2012 00:14:38 GMT
       Connection:
       - Keep-Alive
     body:
       encoding: US-ASCII
       string: ! '{"connected":true}'
     http_version: !!null 
-  recorded_at: Tue, 05 Jun 2012 00:11:39 GMT
+  recorded_at: Tue, 05 Jun 2012 00:14:38 GMT
 - request:
     method: post
     uri: http://localhost:9292/
@@ -74,14 +74,14 @@ http_interactions:
       Server:
       - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
       Date:
-      - Tue, 05 Jun 2012 00:11:41 GMT
+      - Tue, 05 Jun 2012 00:14:40 GMT
       Connection:
       - Keep-Alive
     body:
       encoding: US-ASCII
-      string: ! '{"name":"This is a name","link":"spotify:user:radiofy.se:playlist:2l2Gw5SHRPBjS9UwU091wq","length":0,"tracks":[],"collaborative":true}'
+      string: ! '{"name":"This is a name","link":"spotify:user:radiofy.se:playlist:6cJJjSDQijnfMloutp6t5V","length":0,"tracks":[],"collaborative":true}'
     http_version: !!null 
-  recorded_at: Tue, 05 Jun 2012 00:11:41 GMT
+  recorded_at: Tue, 05 Jun 2012 00:14:40 GMT
 - request:
     method: post
     uri: http://localhost:9292/
@@ -115,14 +115,14 @@ http_interactions:
       Server:
       - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
       Date:
-      - Tue, 05 Jun 2012 00:11:42 GMT
+      - Tue, 05 Jun 2012 00:14:42 GMT
       Connection:
       - Keep-Alive
     body:
       encoding: US-ASCII
-      string: ! '{"name":"This is a name","link":"spotify:user:radiofy.se:playlist:4Cbq1q1aNPFUzZGFnPXqaa","length":0,"tracks":[],"collaborative":false}'
+      string: ! '{"name":"This is a name","link":"spotify:user:radiofy.se:playlist:2JeHX0hyXzN6ehnMjZ0d3K","length":0,"tracks":[],"collaborative":false}'
     http_version: !!null 
-  recorded_at: Tue, 05 Jun 2012 00:11:42 GMT
+  recorded_at: Tue, 05 Jun 2012 00:14:42 GMT
 - request:
     method: get
     uri: http://localhost:9292/spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC
@@ -152,24 +152,24 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '135'
+      - '153'
       Server:
       - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
       Date:
-      - Tue, 05 Jun 2012 00:11:42 GMT
+      - Tue, 05 Jun 2012 00:14:42 GMT
       Connection:
       - Keep-Alive
     body:
       encoding: US-ASCII
-      string: ! '{"name":"This is a name","link":"spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC","length":0,"tracks":[],"collaborative":false}'
+      string: ! '{"name":"619a26ffb707fff99c42cc93bd99f70d","link":"spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC","length":0,"tracks":[],"collaborative":false}'
     http_version: !!null 
-  recorded_at: Tue, 05 Jun 2012 00:11:42 GMT
+  recorded_at: Tue, 05 Jun 2012 00:14:42 GMT
 - request:
     method: put
     uri: http://localhost:9292/spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC
     body:
       encoding: ASCII-8BIT
-      string: name=563cb5cf2fb50a226b02915a87a68f20
+      string: name=639ecee5f40327e64638e08b015a374b
     headers:
       Accept:
       - ! '*/*; q=0.5, application/xml'
@@ -197,12 +197,12 @@ http_interactions:
       Server:
       - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
       Date:
-      - Tue, 05 Jun 2012 00:11:42 GMT
+      - Tue, 05 Jun 2012 00:14:42 GMT
       Connection:
       - Keep-Alive
     body:
       encoding: US-ASCII
-      string: ! '{"name":"563cb5cf2fb50a226b02915a87a68f20","link":"spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC","length":0,"tracks":[],"collaborative":false}'
+      string: ! '{"name":"639ecee5f40327e64638e08b015a374b","link":"spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC","length":0,"tracks":[],"collaborative":false}'
     http_version: !!null 
-  recorded_at: Tue, 05 Jun 2012 00:11:42 GMT
+  recorded_at: Tue, 05 Jun 2012 00:14:42 GMT
 recorded_with: VCR 2.2.0
