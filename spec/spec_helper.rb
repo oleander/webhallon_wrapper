@@ -16,5 +16,5 @@ VCR.configure do |c|
     # record: :new_episodes
     record: :all
   }
-  c.allow_http_connections_when_no_cassette = false
+  c.allow_http_connections_when_no_cassette = true
 end

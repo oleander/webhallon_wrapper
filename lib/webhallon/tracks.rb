@@ -14,5 +14,10 @@ module Webhallon
 
       Webhallon::Playlist.new(response)
     end
+
+    def wipe(playlist)
+      response = fetch("/#{playlist}/tracks", :delete)
+      Webhallon::Playlist.new(response)
+    end
   end
 end

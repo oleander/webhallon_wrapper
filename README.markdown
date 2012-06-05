@@ -23,6 +23,12 @@ socket.playlists.create({
 })
 ````
 
+### Wipe
+
+``` ruby
+socket.tracks.wipe("spotify:user:username:playlist:47JbGTR8wxJw0SX0G1CJcS")
+```
+
 #### Information
 
 ```` ruby

@@ -1,7 +1,7 @@
 def validate(playlist)
   playlist.name.should_not be_empty
-  playlist.should have(0).tracks
-  playlist.length.should be_zero
+  playlist.tracks.count.should >= 0
+  playlist.length.should eq(playlist.tracks.count)
   [true, false].should include(playlist.collaborative?)
   playlist.link.should match(/spotify:user:[\.\w]+:playlist:\w+/)
   playlist.should be_instance_of(Webhallon::Playlist)
@@ -12,6 +12,10 @@ describe Webhallon::Client do
   let(:playlist) { "spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC" }
   let(:track) { "spotify:track:0FRelX0g1nNDFt6nvtiakE" }
 
+  before(:each) do
+    socket.tracks.wipe("spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC")
+  end
+ 
   use_vcr_cassette "client"
 
   describe "connected" do
@@ -69,7 +73,7 @@ describe Webhallon::Client do
     end
   end
 
-  describe "add tracks" do
+  describe "tracks" do
     it "should be possible to add a track" do
       playlist1 = socket.playlists.information(playlist)
       playlist2 = socket.tracks.add({
@@ -79,6 +83,10 @@ describe Webhallon::Client do
 
       playlist1.length.should eq(playlist2.length - 1)
       validate(playlist2)
+    end
+
+    it "should be possible to wipe a playlist" do
+      socket.tracks.wipe(playlist).should have(0).tracks
     end
   end
 end
