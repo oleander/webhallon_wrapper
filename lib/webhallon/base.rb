@@ -1,5 +1,6 @@
 require "rest-client"
 require "json"
+require "timeout"
 
 module Webhallon
   class Base < Struct.new(:server)
@@ -19,12 +20,22 @@ module Webhallon
     # @return Hash
     #
     def fetch(url, method, payload = {})
-      JSON.parse(RestClient::Request.execute({
-        method: method.to_sym,
-        url: url(url),
-        payload: payload,
-        headers: {}
-      }))
+      Timeout::timeout(10) {
+        JSON.parse(RestClient::Request.execute({
+          method: method.to_sym,
+          url: url(url),
+          payload: payload,
+          headers: {}
+        }))
+      }
+    rescue Timeout::Error
+      return {}
+    rescue RestClient::Exception
+      if $!.http_code.between?(400, 499)
+        return {}
+      else
+        raise $!
+      end
     end
 
     #
