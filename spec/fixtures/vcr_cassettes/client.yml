@@ -505,4 +505,46 @@ http_interactions:
         is already empty"}'
     http_version: !!null 
   recorded_at: Tue, 05 Jun 2012 00:49:42 GMT
+- request:
+    method: post
+    uri: http://localhost:9292/spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC/tracks/keep
+    body:
+      encoding: ASCII-8BIT
+      string: from=1&to=20
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '12'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: ! 'Created '
+    headers:
+      X-Frame-Options:
+      - sameorigin
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '181'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.2/2011-07-09)
+      Date:
+      - Tue, 05 Jun 2012 00:57:09 GMT
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: US-ASCII
+      string: ! '{"name":"582e7ad322540d6cd07189c156ea4393","link":"spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC","length":0,"tracks":[],"collaborative":false,"error":"nothing
+        to remove"}'
+    http_version: !!null 
+  recorded_at: Tue, 05 Jun 2012 00:57:09 GMT
 recorded_with: VCR 2.2.0

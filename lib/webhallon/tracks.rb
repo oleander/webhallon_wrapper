@@ -15,8 +15,25 @@ module Webhallon
       Webhallon::Playlist.new(response)
     end
 
+    #
+    # @playlist String Spotify Playlist
+    # @return Webhallon::Playlist
+    #
     def wipe(playlist)
       response = fetch("/#{playlist}/tracks", :delete)
+      Webhallon::Playlist.new(response)
+    end
+
+    #
+    # @args[:playlist] String Spotify Playlist
+    # @args[:range] Range
+    #
+    def keep(args)
+      response = fetch("/#{args.fetch(:playlist)}/tracks/keep", :post, {
+        from: args.fetch(:range).first,
+        to: args.fetch(:range).last
+      })
+
       Webhallon::Playlist.new(response)
     end
   end

@@ -88,5 +88,13 @@ describe Webhallon::Client do
     it "should be possible to wipe a playlist" do
       socket.tracks.wipe(playlist).should have(0).tracks
     end
+
+    it "should be able to work with ranges" do
+      # TODO: Test this
+      socket.tracks.keep({
+        playlist: playlist,
+        range: 1..20
+      })
+    end
   end
 end
