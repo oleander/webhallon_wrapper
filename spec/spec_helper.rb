@@ -1,10 +1,12 @@
 require "webhallon_wrapper"
 require "rspec"
 require "vcr"
+require_relative "./support/helper"
 
 RSpec.configure do |config|
   config.mock_with :rspec
   config.extend VCR::RSpec::Macros
+  config.include Helper
 end
 
 VCR.configure do |c|

@@ -52,4 +52,16 @@ describe Webhallon::Client do
       validate(socket.playlists.information(playlist))
     end
   end
+
+  describe "update playlist" do
+    it "should be able to update playlist" do
+      name1 = socket.playlists.information(playlist).name
+      name2 = socket.playlists.update({
+        name: r_name,
+        playlist: playlist
+      }).name
+
+      name1.should_not eq(name2)
+    end
+  end
 end

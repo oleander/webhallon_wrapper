@@ -21,5 +21,18 @@ module Webhallon
     def information(playlist)
       Webhallon::Playlist.new(fetch("/#{playlist}", :get))
     end
+
+    #
+    # @args[:playlist] String Spotify playlist
+    # @args[:name] Name of playlist. Required.
+    # @return Webhallon::Playlist
+    #
+    def update(args)
+      response = fetch("/#{args.fetch(:playlist)}", :put, {
+        name: args.fetch(:name)
+      })
+
+      Webhallon::Playlist.new(response)
+    end
   end
 end
