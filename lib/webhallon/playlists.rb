@@ -13,5 +13,13 @@ module Webhallon
 
       Webhallon::Playlist.new(response)
     end
+
+    #
+    # @playlist String Playlist to be fetched
+    # @return Webhallon::Playlist
+    #
+    def information(playlist)
+      Webhallon::Playlist.new(fetch("/#{playlist}", :get))
+    end
   end
 end

@@ -1,5 +1,16 @@
+def validate(playlist)
+  playlist.name.should eq("This is a name")
+  playlist.should have(0).tracks
+  playlist.length.should be_zero
+  playlist.should_not be_collaborative
+  playlist.link.should match(/spotify:user:[\.\w]+:playlist:\w+/)
+  playlist.should be_instance_of(Webhallon::Playlist)
+end
+
 describe Webhallon::Client do
   let(:socket) { Webhallon::Client.new("http://localhost:9292") }
+  let(:playlist) { "spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC" }
+
   use_vcr_cassette "client"
 
   describe "connected" do
@@ -14,11 +25,7 @@ describe Webhallon::Client do
         name: "This is a name"
       })
 
-      playlist.name.should eq("This is a name")
-      playlist.should have(0).tracks
-      playlist.length.should be_zero
-      playlist.should_not be_collaborative
-      playlist.link.should match(/spotify:user:[\.\w]+:playlist:\w+/)
+      validate(playlist)
     end
 
     it "should create a collaborative playlist" do
@@ -35,6 +42,14 @@ describe Webhallon::Client do
       })
 
       playlist.should_not be_collaborative
+
+      validate(playlist)
+    end
+  end
+
+  describe "get information from playlist" do
+    it "should return information about existing playlist" do
+      validate(socket.playlists.information(playlist))
     end
   end
 end
