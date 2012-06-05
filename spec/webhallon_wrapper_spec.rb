@@ -1,12 +1,3 @@
-def validate(playlist)
-  playlist.name.should_not be_empty
-  playlist.tracks.count.should >= 0
-  playlist.length.should eq(playlist.tracks.count)
-  [true, false].should include(playlist.collaborative?)
-  playlist.link.should match(/spotify:user:[\.\w]+:playlist:\w+/)
-  playlist.should be_instance_of(Webhallon::Playlist)
-end
-
 describe Webhallon::Client do
   let(:socket) { Webhallon::Client.new("http://localhost:9292") }
   let(:playlist) { "spotify:user:radiofy.se:playlist:0wVa3u1ckpCraTnNw9dPCC" }
