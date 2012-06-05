@@ -20,9 +20,9 @@ module Webhallon
     #
     def fetch(url, method, payload = {})
       JSON.parse(RestClient::Request.execute({
-        method: method.to_sym, 
-        url: url(url), 
-        payload: payload, 
+        method: method.to_sym,
+        url: url(url),
+        payload: payload,
         headers: {}
       }))
     end
@@ -33,6 +33,14 @@ module Webhallon
     #
     def url(url)
       File.join(server, url)
+    end
+
+    #
+    # @response Hash
+    # @return Webhallon::Playlist
+    #
+    def pack(response)
+      Webhallon::Playlist.new(response)
     end
   end
 end

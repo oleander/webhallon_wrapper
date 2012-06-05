@@ -6,12 +6,10 @@ module Webhallon
     # @return Webhallon::Playlist
     #
     def create(args)
-      response = fetch("/", :post, {
+      pack(fetch("/", :post, {
         name: args.fetch(:name), 
         collaborative: args[:collaborative] ? "1" : "0"
-      })
-
-      Webhallon::Playlist.new(response)
+      }))
     end
 
     #
@@ -19,7 +17,7 @@ module Webhallon
     # @return Webhallon::Playlist
     #
     def information(playlist)
-      Webhallon::Playlist.new(fetch("/#{playlist}", :get))
+      pack(fetch("/#{playlist}", :get))
     end
 
     #
@@ -28,11 +26,9 @@ module Webhallon
     # @return Webhallon::Playlist
     #
     def update(args)
-      response = fetch("/#{args.fetch(:playlist)}", :put, {
+      pack(fetch("/#{args.fetch(:playlist)}", :put, {
         name: args.fetch(:name)
-      })
-
-      Webhallon::Playlist.new(response)
+      }))
     end
   end
 end

@@ -7,12 +7,10 @@ module Webhallon
     # @return Webhallon::Playlist
     #
     def add(args)
-      response = fetch("/#{args.fetch(:playlist)}/tracks", :post, {
+      pack(fetch("/#{args.fetch(:playlist)}/tracks", :post, {
         tracks: args.fetch(:tracks), 
         index: args[:index] || 0
-      })
-
-      Webhallon::Playlist.new(response)
+      }))
     end
 
     #
@@ -20,8 +18,7 @@ module Webhallon
     # @return Webhallon::Playlist
     #
     def wipe(playlist)
-      response = fetch("/#{playlist}/tracks", :delete)
-      Webhallon::Playlist.new(response)
+      pack(fetch("/#{playlist}/tracks", :delete))
     end
 
     #
@@ -29,12 +26,10 @@ module Webhallon
     # @args[:range] Range
     #
     def keep(args)
-      response = fetch("/#{args.fetch(:playlist)}/tracks/keep", :post, {
+      pack(fetch("/#{args.fetch(:playlist)}/tracks/keep", :post, {
         from: args.fetch(:range).first,
         to: args.fetch(:range).last
-      })
-
-      Webhallon::Playlist.new(response)
+      }))
     end
   end
 end
